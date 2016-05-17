@@ -12,14 +12,18 @@ int main() {
     double sum = 0;
     cout << "Enter a number, enter any non-number when finished:";
 
+    //constantly read in numbers
     while (cin >> vec) {
+        //check if input is a number
         if (!cin) {
             break;
         }
         cout << "Enter a number, enter any non-number when finished:";
+        //add number to vector
         v.push_back(vec);
     }
 
+    //calculate total
     for (double d: v) {
         sum += d;
     }
