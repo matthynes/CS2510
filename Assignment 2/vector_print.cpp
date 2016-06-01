@@ -47,9 +47,8 @@ int main() {
     //testing print() function
     std::vector<int> ints = {12, 3, 6, 8, 5, 4, 665436, 7, 5, 3, 553, 2, 5};
     std::string lbl = "The number is ";
-
     print(lbl, ints);
-
+    std::cout << std::endl;
 
     //testing fib_print() function
     fib_print(0, 1, 25);
