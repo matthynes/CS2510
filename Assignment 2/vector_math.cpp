@@ -1,5 +1,5 @@
 // Matthew Hynes (201200318)
-//Question 3
+// Question 3
 
 #include <vector>
 #include <algorithm>
@@ -17,7 +17,9 @@ struct vector_calc {
     }
 };
 
+// Calculation function that returns struct of answers
 vector_calc calculate(std::vector<double> vec) {
+    //First, sort vector to make getting min, max easier. Must be sorted for median.
     std::sort(vec.begin(), vec.end());
     unsigned long len = vec.size();
 
@@ -26,10 +28,13 @@ vector_calc calculate(std::vector<double> vec) {
         sum += d;
     }
 
+    // Two different cases for getting median.
     double median;
+    // Odd number of elements, median is middle element
     if (len % 2 != 0) {
         median = vec[len / 2];
     } else {
+        // Even number of elements, median is average of middle 2
         double first = vec[len / 2];
         double second = vec[(len / 2) + 1];
         median = (first + second) / 2;
@@ -38,6 +43,7 @@ vector_calc calculate(std::vector<double> vec) {
     return vector_calc(vec[0], vec[len - 1], sum / len, median);
 }
 
+// Calculation function that uses const-parameters in place of traditional return statement
 void calculate(std::vector<double> vec, double &min, double &max, double &mean, double &median) {
     std::sort(vec.begin(), vec.end());
     unsigned long len = vec.size();
