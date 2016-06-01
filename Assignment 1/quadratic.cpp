@@ -9,7 +9,7 @@ double a, b, c;
 double x1, x2;
 double discriminant;
 
-int QuadMain() {
+int main() {
     cout << "Enter 3 coefficients to calculate: ";
     cin >> a >> b >> c;
 

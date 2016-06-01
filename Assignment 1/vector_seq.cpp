@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int VecMain() {
+int main() {
 
     vector<double> v;
     double vec;
