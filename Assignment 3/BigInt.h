@@ -8,15 +8,15 @@
 
 class BigInt {
 public:
-    BigInt() { }
+    BigInt();
 
-    BigInt(std::string strInt) { }
+    BigInt(std::string strInt);
 
-    std::vector<int> getBigInt() const { }
+    std::vector<int> getBigInt() const;
 
 private:
     std::vector<int> bigInteger;
 
 };
 
-#endif BIGINT_H
+#endif //BIGINT_H
