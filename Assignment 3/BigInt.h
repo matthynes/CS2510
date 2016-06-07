@@ -12,6 +12,8 @@ public:
 
     BigInt(std::string strInt);
 
+//    ~BigInt();
+
     std::vector<int> getBigInt() const;
 
 private:
