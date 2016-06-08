@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <string>
+#include <iomanip>
+#include <ostream>
 
 class BigInt {
 public:
@@ -12,9 +14,14 @@ public:
 
     BigInt(std::string strInt);
 
-//    ~BigInt();
-
     std::vector<int> getBigInt() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const BigInt &bi) {
+        for (int i = 0; i < bi.bigInteger.size(); i++) {
+            os << bi.bigInteger[i];
+        }
+        return os;
+    }
 
 private:
     std::vector<int> bigInteger;
