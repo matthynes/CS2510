@@ -3,5 +3,5 @@ project(CS2510)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES "Assignment 3/BigInt.h" "Assignment 3/BigInt.cpp" "Assignment 4/sphere.cpp" "Assignment 4/sphere.h")
+set(SOURCE_FILES "Assignment 4/sphere.cpp" "Assignment 4/shape.h" "Assignment 4/cylinder.cpp" "Assignment 4/rightcircularcone.cpp")
 add_executable(CS2510 ${SOURCE_FILES})

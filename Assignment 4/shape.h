@@ -3,6 +3,7 @@
 #include <string>
 
 #ifndef SHAPE_H
+#define SHAPE_H
 
 class Shape {
 public:
@@ -12,7 +13,5 @@ public:
 
     virtual double volume() = 0;
 };
-
-#define SHAPE_H
 
 #endif //SHAPE_H
