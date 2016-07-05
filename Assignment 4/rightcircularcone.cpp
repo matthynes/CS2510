@@ -3,7 +3,7 @@
 #include <cmath>
 #include "shape.h"
 
-class RightCircularCone : Shape {
+class RightCircularCone : public Shape {
 private:
     static constexpr double PI = 3.14159;
     double radius, height;

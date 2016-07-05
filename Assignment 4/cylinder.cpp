@@ -2,7 +2,7 @@
 
 #include "shape.h"
 
-class Cylinder : Shape {
+class Cylinder : public Shape {
 private:
     static constexpr double PI = 3.14159;
     double radius, height;
