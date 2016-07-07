@@ -14,9 +14,10 @@ public:
 
     void show() override {
         std::cout << "This object is " << off() << ". It's level is " << level;
+        //variant of show method
         if (level % 2 == 0) {
             std::cout << ", which is even.\n";
-        }else{
+        } else {
             std::cout << ", which is odd.\n";
         }
     }

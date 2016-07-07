@@ -13,11 +13,13 @@ public:
     std::string off() override { return !is_on ? "off" : "on"; }
 
     void show() override {
+        //variant 2 of show method
         std::cout << "This object is " << off() << ". It's modified level is " << level <<
         ". Can you guess what it's original level was?\n";
     }
 
     void set_level(int n) {
+        //variant of set level method
         srand(time(0));
         level = n + 2 * (rand() % 99);
     }

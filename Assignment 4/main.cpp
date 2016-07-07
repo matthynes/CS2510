@@ -27,10 +27,10 @@ int main() {
         std::cout << "This shape is a " << sh->name() << " with an area of " << sh->area() << " and a volume of " <<
         sh->volume() << ".\n";
     }
-
     delete s1, s2, c1, c2, r1, r2;
 
     std::cout << "\n---------------------\n\n";
+
 
     //======================
     //Testing for Question 2
@@ -45,8 +45,9 @@ int main() {
         //I'm only going to call set_level and show since they use the other methods in the Controller classes.
         cd->set_level(67);
         cd->show();
-        std::cout << "\n";
     }
+
+    delete cd1, cd2, cd3;
 
     return 0;
 }
