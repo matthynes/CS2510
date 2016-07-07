@@ -5,9 +5,9 @@
 
 class Controller {
 public:
-    virtual bool on() = 0;
+    virtual std::string on() = 0;
 
-    virtual bool off() = 0;
+    virtual std::string off() = 0;
 
     virtual void set_level(int n) = 0;
 
