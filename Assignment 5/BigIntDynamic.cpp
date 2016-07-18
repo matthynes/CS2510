@@ -21,6 +21,13 @@ BigInt::BigInt(const BigInt &obj) {
     *myArr = *obj.myArr;
 }
 
+//move c'tor
+BigInt::BigInt(BigInt &&obj) {
+    myArr = obj.myArr;
+    obj.myArr = nullptr;
+}
+
+//d'tor
 BigInt::~BigInt() { delete[] myArr; }
 
 // ------------------------------------------------------------
@@ -33,7 +40,17 @@ BigInt &BigInt::operator=(const BigInt &obj) {
         delete[] myArr;
         myArr = i;
     }
+    return *this;
 }
+
+//move assgn
+BigInt &BigInt::operator=(BigInt &&obj) {
+    delete[] myArr;
+    myArr = obj.myArr;
+    obj.myArr = nullptr;
+    return *this;
+}
+
 
 bool BigInt::operator==(const BigInt &c) const {
     for (int i = 0; i < mySize; ++i) {

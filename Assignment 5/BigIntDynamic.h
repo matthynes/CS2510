@@ -16,9 +16,14 @@ public:
 
     BigInt(const BigInt &obj);
 
+    BigInt(BigInt &&obj);
+
+
     ~BigInt();
 
     BigInt &operator=(const BigInt &obj);
+
+    BigInt &operator=(BigInt &&obj);
 
     /** equality operators */
     bool operator==(const BigInt &c) const;
