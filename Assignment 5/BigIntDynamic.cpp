@@ -1,5 +1,5 @@
 // Matthew Hynes (201200318)
-// Adapted from soltuon provided for Assignment 3
+// Adapted from solution provided for Assignment 3
 
 #include <sstream>
 #include <stdexcept>
@@ -10,16 +10,34 @@ BigInt::BigInt() : BigInt("0000000000") { }
 
 // ------------------------------------------------------------
 BigInt::BigInt(const std::string &num) {
-    myVec.resize(mySize);
     for (int i = 0; i < mySize; ++i) {
-        myVec[i] = num[i] - '0';
+        myArr[i] = num[i] - '0';
     }
 }
 
+//copy c'tor
+BigInt::BigInt(const BigInt &obj) {
+    myArr = new int[mySize];
+    *myArr = *obj.myArr;
+}
+
+BigInt::~BigInt() { delete[] myArr; }
+
 // ------------------------------------------------------------
+
+//copy assgn
+BigInt &BigInt::operator=(const BigInt &obj) {
+    if (this != &obj) {
+        int *i = new int[obj.mySize];
+        std::copy(obj.myArr, obj.myArr + obj.mySize, i);
+        delete[] myArr;
+        myArr = i;
+    }
+}
+
 bool BigInt::operator==(const BigInt &c) const {
-    for (int i = 0; i < c.myVec.size(); ++i) {
-        if (myVec[i] != c.myVec[i]) {
+    for (int i = 0; i < mySize; ++i) {
+        if (myArr[i] != c.myArr[i]) {
             return false;
         }
     }
@@ -35,8 +53,8 @@ bool BigInt::operator!=(const BigInt &c) const {
 
 // ------------------------------------------------------------
 bool BigInt::operator<(const BigInt &c) const {
-    for (int i = 0; i < myVec.size(); ++i) {
-        int diff = myVec[i] - c.myVec[i];
+    for (int i = 0; i < mySize; ++i) {
+        int diff = myArr[i] - c.myArr[i];
         if (diff < 0) {
             return true;
         } else if (diff > 0) {
@@ -50,10 +68,10 @@ bool BigInt::operator<(const BigInt &c) const {
 // ------------------------------------------------------------
 BigInt BigInt::operator+(const BigInt &c) const {
     // Perform the addition in columns from LSB to MSB
-    std::vector<int> result(myVec.size());
+    int result[mySize];
     int carry = 0;
-    for (int i = myVec.size() - 1; i >= 0; --i) {
-        int add = myVec[i] + c.myVec[i] + carry;
+    for (int i = mySize - 1; i >= 0; --i) {
+        int add = myArr[i] + c.myArr[i] + carry;
         result[i] = add % 10;
         carry = add / 10;
     }
