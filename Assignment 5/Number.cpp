@@ -1,16 +1,15 @@
 // Matthew Hynes (201200318)
 
 #include <cmath>
+#include <iostream>
 
 template<typename T>
 class Number {
 private:
-    T val;
+    const T val;
 
 public:
-    Number() {
-        Number(0);
-    }
+    Number() : val{0} { }
 
     Number(T n) : val{n} { }
 
@@ -18,23 +17,23 @@ public:
         return val;
     }
 
-    T operator+(T n2) {
-        return val + n2;
+    Number<T> operator+(Number<T> &n2) {
+        return Number<T>{val + n2.get()};
     }
 
-    T operator-(T n2) {
-        return val - n2;
+    Number<T> operator-(Number<T> &n2) {
+        return Number<T>{val - n2.get()};
     }
 
-    T operator*(T n2) {
-        return val * n2;
+    Number<T> operator*(Number<T> &n2) {
+        return Number<T>{val * n2.get()};
     }
 
-    T operator/(T n2) {
-        return val / n2;
+    Number<T> operator/(Number<T> &n2) {
+        return Number<T>{val / n2.get()};
     }
 
-    T operator^(T n2) {
-        return std::pow(val, n2);
+    Number<T> operator^(Number<T> &n2) {
+        return Number<T>{std::pow(val, n2.get())};
     }
 };
