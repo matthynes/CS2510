@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 #include <iostream>
+#include <algorithm>
 
 template<class T>
 class ImmutableVector {
@@ -31,12 +32,35 @@ int main(int ac, char *av[]) {
     ImmutableVector<double> vec = {1.2, 4.7, 3.4, 5.2, 0.8, 7.5, 6.7};
 
     // Create lambdas for max, min, and sum functions
-    // ...
+    auto max_elem = [](std::vector<double> v) {
+        return *std::max_element(v.begin(), v.end());
+    };
 
-    std::cout << "Maximum value: " << // ...
-              std::cout << "Minimum value: " << // ...
-              std::cout << "Actual sum   : " << // ...
-              std::cout << "Middle sum   : " << // ...
+    auto min_elem = [](std::vector<double> v) {
+        return *std::min_element(v.begin(), v.end());
+    };
+
+    auto sum = [](std::vector<double> v) {
+        double n = 0;
+        for (double &d: v) {
+            n += d;
+        }
+        return n;
+    };
+
+    auto mid_sum = [&](std::vector<double> v) {
+        //sort array and remove first (smallest) and last (largest) elements
+        std::sort(v.begin(), v.end());
+        v.erase(v.begin());
+        v.erase(v.end() - 1);
+
+        return sum(v);
+    };
+
+    std::cout << "Maximum value: " << vec.op(max_elem) << "\n";
+    std::cout << "Minimum value: " << vec.op(min_elem) << "\n";
+    std::cout << "Actual sum: " << vec.op(sum) << "\n";
+    std::cout << "Middle sum: " << vec.op(mid_sum) << "\n";
 
     return 0;
 }
