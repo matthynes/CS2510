@@ -5,20 +5,22 @@ BigInt::BigInt() : BigInt("0000000000") {}
 
 // ------------------------------------------------------------
 BigInt::BigInt(const string &num) {
-    myVec = new int[mySize];
+    myVec = make_ptr<int[]>(mySize);
     for (int i = 0; i < mySize; ++i) {
         myVec[i] = num[i] - '0';
     }
 }
 
 // ------------------------------------------------------------
-BigInt::~BigInt() { delete[] myVec; }
+BigInt::~BigInt() {
+    //delete[] myVec.get();
+}
 
 // ------------------------------------------------------------
 BigInt::BigInt(const BigInt &bi)
         : myVec(new int[bi.mySize]) {
     cout << "==> Copy c'tor\n";
-    copy(bi.myVec, bi.myVec + mySize, myVec); // std::copy
+    copy(bi.myVec.get(), bi.myVec.get() + mySize, myVec.get()); // std::copy
 }
 
 // ------------------------------------------------------------
@@ -26,26 +28,26 @@ BigInt &BigInt::operator=(const BigInt &bi) {
     cout << "==> Copy assignment\n";
     if (this != &bi) {
         int *p = new int[bi.mySize];
-        copy(bi.myVec, bi.myVec + mySize, p);
-        delete[] myVec;
-        myVec = p;
+        copy(bi.myVec.get(), bi.myVec.get() + mySize, p);
+        //delete[] myVec.get();
+        myVec.reset(p);
     }
 
     return *this;
 }
 
 // ------------------------------------------------------------
-BigInt::BigInt(BigInt && bi)
-        : myVec(bi.myVec) {
+BigInt::BigInt(BigInt &&bi)
+        : myVec(bi.myVec.get()) {
     cout << "==> Move c'tor\n";
     bi.myVec = nullptr;
 }
 
 // ------------------------------------------------------------
-BigInt &BigInt::operator=(BigInt && bi) {
+BigInt &BigInt::operator=(BigInt &&bi) {
     cout << "==> Move assignment\n";
-    delete[] myVec;
-    myVec = bi.myVec;
+    //delete[] myVec.get();
+    myVec.reset(bi.myVec.get());
     bi.myVec = nullptr;
 
     return *this;
@@ -97,7 +99,7 @@ BigInt BigInt::operator+(const BigInt &bi) const {
     // it means we need another digit to store the result
     // (aka, overflow)
     if (carry > 0) {
-        error("overflow");
+        overflow_error("overflow");
     }
 
     // Convert vector back to a string

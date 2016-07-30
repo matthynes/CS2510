@@ -45,7 +45,7 @@ public:
 
 private:
     static constexpr int mySize = 10;
-    int *myVec;
+    unique_ptr<int[]> myVec;
 };
 
 #endif
